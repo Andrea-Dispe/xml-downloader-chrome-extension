@@ -1,5 +1,3 @@
-/* Styles for Modal XML Downloader Chrome Extension */
-
 .xml-download-btn {
   background-color: #4CAF50;
   border: none;
@@ -36,13 +34,11 @@
   outline-offset: 2px;
 }
 
-/* Ensure button is visible in modals */
 .modal-content .xml-download-btn {
   float: right;
   margin-left: auto;
 }
 
-/* Style adjustments for different modal layouts */
 .modal-header .xml-download-btn {
   margin-left: 10px;
 }
