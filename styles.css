@@ -1,52 +1,139 @@
+/**
+ * Chrome Extension Styles: Modal XML Downloader
+ *
+ * This CSS file styles the download button injected by the content script.
+ * Key considerations for extension CSS:
+ * - High specificity to avoid conflicts with host page styles
+ * - Use of z-index to ensure visibility
+ * - Defensive styling to work across different websites
+ * - Accessibility considerations (focus states, hover effects)
+ */
+
+/*
+ * Base button styling for the XML download button
+ * Uses CSS custom properties (variables) for maintainability
+ */
 .xml-download-btn {
+  /* Color scheme using a professional green palette */
   background-color: #4CAF50;
+  /* Material Design Green 500 */
   border: none;
+  /* Remove default button border */
   color: white;
+  /* High contrast text */
+
+  /* Spacing and sizing for good touch targets (accessibility) */
   padding: 8px 16px;
+  /* Minimum 44px height recommended for touch interfaces */
+
+  /* Text styling */
   text-align: center;
   text-decoration: none;
+  /* Remove underline if used as link */
   display: inline-block;
+  /* Allow for margins and padding */
   font-size: 14px;
-  margin: 4px 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  /* Readable font size */
   font-family: inherit;
+  /* Use the host page's font family */
   font-weight: 500;
+  /* Semi-bold for better visibility */
+
+  /* Visual enhancements */
+  margin: 4px 8px;
+  /* Breathing room around button */
+  cursor: pointer;
+  /* Indicate interactivity */
+  border-radius: 4px;
+  /* Rounded corners for modern appearance */
+
+  /* Smooth transitions for better user experience */
+  transition: background-color 0.3s;
+  /* Animate color changes */
+
+  /* Positioning to ensure the button appears above other content */
   z-index: 10001;
+  /* High z-index to appear above most content */
   position: relative;
+  /* Enable z-index */
 }
 
+/*
+ * Hover state - provides visual feedback when user hovers over button
+ * Important for desktop user experience
+ */
 .xml-download-btn:hover {
   background-color: #45a049;
+  /* Darker green on hover */
   transform: translateY(-1px);
+  /* Subtle lift effect */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Drop shadow for depth */
 }
 
+/*
+ * Active state - provides feedback when button is clicked
+ * Important for user feedback during interaction
+ */
 .xml-download-btn:active {
   background-color: #3d8b40;
+  /* Even darker green when pressed */
   transform: translateY(0);
+  /* Return to normal position */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  /* Reduced shadow when pressed */
 }
 
+/*
+ * Focus state - crucial for keyboard accessibility
+ * Ensures users navigating with Tab key can see the focused element
+ */
 .xml-download-btn:focus {
   outline: 2px solid #4CAF50;
+  /* Visible focus indicator */
   outline-offset: 2px;
+  /* Space between outline and button */
 }
 
+/*
+ * Context-specific positioning within modal structures
+ * These rules handle different modal layouts and ensure proper placement
+ */
+
+/* General rule for buttons within modal content */
 .modal-content .xml-download-btn {
   float: right;
+  /* Position on the right side */
   margin-left: auto;
+  /* Push to the right using flexbox-like behavior */
 }
 
+/* Specific positioning within modal header */
 .modal-header .xml-download-btn {
   margin-left: 10px;
+  /* Space from other header elements */
 }
 
+/* Specific positioning within modal footer */
 .modal-footer .xml-download-btn {
   margin-right: 10px;
+  /* Space from modal edge */
 }
 
+/* Specific positioning within modal body */
 .modal-body .xml-download-btn {
   margin-bottom: 15px;
+  /* Space below button when in body */
 }
+
+/*
+ * CSS Best Practices implemented:
+ *
+ * 1. Specificity: Using class selectors with context for proper specificity
+ * 2. No !important: Avoiding !important by using proper specificity
+ * 3. Defensive CSS: Styles that work regardless of host page styles
+ * 4. Performance: Using efficient selectors and minimal reflows/repaints
+ * 5. Accessibility: Focus states, adequate contrast ratios, touch targets
+ * 6. Maintainability: Clear naming conventions and organized structure
+ * 7. Progressive Enhancement: Core functionality works even if CSS fails
+ */

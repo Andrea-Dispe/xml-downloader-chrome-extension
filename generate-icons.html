@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Generate Extension Icons</title>
+</head>
+
+<body>
+  <h2>Chrome Extension Icon Generator</h2>
+  <p>Click the buttons below to download icon files for your extension:</p>
+
+  <button onclick="generateIcon(16)">Download 16x16 Icon</button>
+  <button onclick="generateIcon(48)">Download 48x48 Icon</button>
+  <button onclick="generateIcon(128)">Download 128x128 Icon</button>
+
+  <br><br>
+  <div id="preview"></div>
+
+  <script>
+    function generateIcon(size) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background - Blue color
+      ctx.fillStyle = '#4285f4';
+      ctx.fillRect(0, 0, size, size);
+
+      // White border
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = Math.max(1, size / 32);
+      ctx.strokeRect(ctx.lineWidth / 2, ctx.lineWidth / 2, size - ctx.lineWidth, size - ctx.lineWidth);
+
+      // XML text
+      ctx.fillStyle = 'white';
+      ctx.font = `bold ${Math.floor(size / 6)}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('XML', size / 2, size / 2);
+
+      // Convert to blob and download
+      canvas.toBlob(function (blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `icon${size}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 'image/png');
+
+      // Show preview
+      const preview = document.getElementById('preview');
+      preview.innerHTML = `<p>Generated ${size}x${size} icon:</p>`;
+      canvas.style.border = '1px solid #ccc';
+      canvas.style.margin = '5px';
+      preview.appendChild(canvas.cloneNode());
+    }
+  </script>
+</body>
+
+</html>
