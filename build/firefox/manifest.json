@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Modal XML Downloader",
+  "version": "1.0",
+  "description": "Downloads XML content from modals on maintenance pages",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "*://*/maintenance*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/maintenance*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "strict_min_version": "42.0"
+    }
+  }
+}
